@@ -31,15 +31,16 @@ p2_targets_list <- list(
   tar_target(
     nwis_data_clean_csv, 
     process_data(site_data = site_data, 
-                 fileout = "2_process/out/nwis_data_clean.csv")
+                 fileout = "2_process/out/nwis_data_clean.csv"),
+    format = "file"
   ),
-  tar_target(
-    cleaned_data_csv,
-    annotate_and_style_data(filein = nwis_data_clean_csv, site_info = site_info,
-                            fileout = "2_process/out/cleaned_data.csv")
-  )
+tar_target(
+  cleaned_data_csv,
+  annotate_and_style_data(filein = nwis_data_clean_csv, site_info = site_info,
+                          fileout = "2_process/out/cleaned_data.csv"),
+  format = "file"
 )
-
+)
 p3_targets_list <- list(
   tar_target(
     figure_1_png,
