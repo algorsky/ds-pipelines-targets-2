@@ -12,7 +12,7 @@ p1_targets_list <- list(
   tar_target(site_data_01436690, download_nwis_site_data('01436690')),
   tar_target(site_data_01466500, download_nwis_site_data('01466500')),
   
-  tar_target(site_data,
+  tar_target(site_data_csv,
              {
                out_file <- "1_fetch/out/site_data.csv"
                list(site_data_01427207, site_data_01432160, 
@@ -26,14 +26,14 @@ p1_targets_list <- list(
   
   tar_target(
     site_info_csv,
-    nwis_site_info(site_data, fileout = "1_fetch/out/site_info.csv")
+    nwis_site_info(filein = site_data_csv, fileout = "1_fetch/out/site_info.csv")
   )
 )
 
 p2_targets_list <- list(
   tar_target(
     site_data_clean, 
-    process_data(site_data)
+    process_data(site_data_csv)
   ),
   tar_target(
     cleaned_data,
