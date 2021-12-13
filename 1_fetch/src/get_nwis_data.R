@@ -15,7 +15,8 @@ download_nwis_data <- function(site_nums = c("01427207", "01432160", "01436690",
   return(data_out)
 }
 
-nwis_site_info <- function(site_data){
+nwis_site_info <- function(filein){
+  site_data<- read_csv(filein)
   site_num <- unique(site_data$site_no)
   site_info <- dataRetrieval::readNWISsite(site_num)
   return(site_info)
